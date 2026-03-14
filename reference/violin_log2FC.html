@@ -52,7 +52,8 @@ It also performs a t-test to assess statistical significance.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">violin_log2FC</span><span class="op">(</span></span>
 <span>  object <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  title <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  ylab <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"log2 Fold Change"</span>,</span>
 <span>  xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  log2FC_col <span class="op">=</span> <span class="st">"Fold"</span>,</span>
 <span>  chr_col <span class="op">=</span> <span class="st">"seqnames"</span>,</span>
@@ -76,8 +77,12 @@ It also performs a t-test to assess statistical significance.</p>
 <dd><p>Plot title (optional)</p></dd>
 
 
+<dt id="arg-subtitle">subtitle<a class="anchor" aria-label="anchor" href="#arg-subtitle"></a></dt>
+<dd><p>Plot subtitle (optional)</p></dd>
+
+
 <dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
-<dd><p>Y-axis label (optional)</p></dd>
+<dd><p>Character. Y-axis label. (default: "log2 Fold Change")</p></dd>
 
 
 <dt id="arg-xlab">xlab<a class="anchor" aria-label="anchor" href="#arg-xlab"></a></dt>
@@ -121,10 +126,10 @@ It also performs a t-test to assess statistical significance.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Basic usage with a data frame</span></span></span>
-<span class="r-in"><span><span class="fu">violin_box</span><span class="op">(</span><span class="va">my_data</span>, title <span class="op">=</span> <span class="st">"Expression comparison"</span>, ylab <span class="op">=</span> <span class="st">"log2FoldChange"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">violin_box</span><span class="op">(</span><span class="va">my_peaks</span>, title <span class="op">=</span> <span class="st">"Expression comparison"</span>, ylab <span class="op">=</span> <span class="st">"log2FoldChange"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Custom chromosome and colors</span></span></span>
-<span class="r-in"><span><span class="fu">violin_box</span><span class="op">(</span><span class="va">my_data</span>, chr_of_interest <span class="op">=</span> <span class="st">"chr1"</span>,</span></span>
+<span class="r-in"><span><span class="fu">violin_box</span><span class="op">(</span><span class="va">my_peaks</span>, chr_of_interest <span class="op">=</span> <span class="st">"chr1"</span>,</span></span>
 <span class="r-in"><span>          color_chr_of_interest <span class="op">=</span> <span class="st">"red"</span>, color_other_chr <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>

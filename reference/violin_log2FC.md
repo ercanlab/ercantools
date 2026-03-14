@@ -10,7 +10,8 @@ data It also performs a t-test to assess statistical significance.
 violin_log2FC(
   object = NULL,
   title = NULL,
-  ylab = NULL,
+  subtitle = NULL,
+  ylab = "log2 Fold Change",
   xlab = NULL,
   log2FC_col = "Fold",
   chr_col = "seqnames",
@@ -33,9 +34,13 @@ violin_log2FC(
 
   Plot title (optional)
 
+- subtitle:
+
+  Plot subtitle (optional)
+
 - ylab:
 
-  Y-axis label (optional)
+  Character. Y-axis label. (default: "log2 Fold Change")
 
 - xlab:
 
@@ -78,10 +83,10 @@ A ggplot object containing the violin and box plots
 ``` r
 if (FALSE) { # \dontrun{
 # Basic usage with a data frame
-violin_box(my_data, title = "Expression comparison", ylab = "log2FoldChange")
+violin_box(my_peaks, title = "Expression comparison", ylab = "log2FoldChange")
 
 # Custom chromosome and colors
-violin_box(my_data, chr_of_interest = "chr1",
+violin_box(my_peaks, chr_of_interest = "chr1",
           color_chr_of_interest = "red", color_other_chr = "blue")
 } # }
 ```
