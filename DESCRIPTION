@@ -22,11 +22,17 @@ Depends:
     R (>= 4.1.0)
 Imports:
     ggplot2 (>= 3.4.0),
+    GenomicRanges,
     dplyr (>= 1.1.0),
     tibble (>= 3.2.0),
     ggpubr (>= 0.6.0),
+    ggrepel,
+    IRanges,
     magrittr,
-    stats
+    stats,
+    S4Vectors,
+    rlang,
+    tidyr
 Suggests:
     UpSetR,
     knitr,
@@ -34,5 +40,8 @@ Suggests:
     testthat (>= 3.0.0),
     pkgdown,
     BiocManager
-URL: https://github.com/ercanlab/ercantools
+URL: https://github.com/ercanlab/ercantools,
+    https://ercanlab.github.io/ercantools
 BugReports: https://github.com/ercanlab/ercantools/issues
+LazyData: true
+VignetteBuilder: knitr
