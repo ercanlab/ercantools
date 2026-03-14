@@ -1,0 +1,27 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://ercanlab.github.io/ercantools/404.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/LICENSE-text.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/articles/diagnostic-plots.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/articles/index.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/articles/violin-plots.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/authors.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/index.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/dot-check_cols.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/dot-clean_chr_name.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/dot-elegans_chr_order.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/dot-run_ttest.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/dot-run_ttest_fc.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/ercantools-package.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/example_peaks.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/find_overlap_peaks.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/index.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/plot_distributions.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/plot_md.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/ttest_scatter.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/upset_peaks.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/violin_counts.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/violin_counts_all_chr.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/violin_log2FC.html</loc></url>
+<url><loc>https://ercanlab.github.io/ercantools/reference/violin_log2FC_all_chr.html</loc></url>
+</urlset>
+

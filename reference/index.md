@@ -1,0 +1,53 @@
+# Package index
+
+## Violin plots
+
+Compare log2FC or normalized counts between chromosomes.
+
+- [`violin_log2FC()`](https://ercanlab.github.io/ercantools/reference/violin_log2FC.md)
+  : A function to generate violin-box plot to compare binding changes
+  (log2FoldChange) between chromosome X and autosomes (A) based on
+  ChIPseq data It also performs a t-test to assess statistical
+  significance.
+- [`violin_counts()`](https://ercanlab.github.io/ercantools/reference/violin_counts.md)
+  : Creates violin-box plots to compare normalized binding counts values
+  between different conditions and chromosomes, typically comparing X
+  chromosome vs autosomes.
+- [`violin_log2FC_all_chr()`](https://ercanlab.github.io/ercantools/reference/violin_log2FC_all_chr.md)
+  : Violin + box plot for all chromosomes separately (log2 fold change)
+- [`violin_counts_all_chr()`](https://ercanlab.github.io/ercantools/reference/violin_counts_all_chr.md)
+  : Violin + box plot for all chromosomes separately (normalized binding
+  counts)
+
+## T-test scatter plots
+
+Chromosome-level significance plots.
+
+- [`ttest_scatter()`](https://ercanlab.github.io/ercantools/reference/ttest_scatter.md)
+  : Dot plot of -log10(p-value) for log2 fold-change comparisons along
+  chromosomes
+
+## Diagnostic plots
+
+MD plot and distribution plots for DiffBind output.
+
+- [`plot_md()`](https://ercanlab.github.io/ercantools/reference/plot_md.md)
+  : MA / MD plot for differential binding results
+- [`plot_distributions()`](https://ercanlab.github.io/ercantools/reference/plot_distributions.md)
+  : Density or histogram of normalized binding counts per chromosome
+
+## Peak utilities
+
+Genomic overlap detection and visualization.
+
+- [`find_overlap_peaks()`](https://ercanlab.github.io/ercantools/reference/find_overlap_peaks.md)
+  : Find overlapping peaks between two peak sets
+- [`upset_peaks()`](https://ercanlab.github.io/ercantools/reference/upset_peaks.md)
+  : UpSet plot for peak category overlaps
+
+## Example data
+
+Built-in dataset for examples.
+
+- [`example_peaks`](https://ercanlab.github.io/ercantools/reference/example_peaks.md)
+  : Example ChIP-seq differential binding peaks
