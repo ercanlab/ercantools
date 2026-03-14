@@ -1,0 +1,75 @@
+---
+title: "Diagnostic plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Diagnostic plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+```
+```{r load}
+library(ercantools)
+data(example_peaks)
+```
+
+## `plot_md()`
+
+Plots log2 fold-change against average concentration. Points are
+coloured by significance status.
+```{r plot_md}
+plot_md(
+  object     = example_peaks,
+  x_var      = "Conc",
+  y_var      = "Fold",
+  fdr_var    = "FDR",
+  cutoff_y   = 0.5,
+  cutoff_FDR = 0.05,
+  title      = "MD plot — degron vs notag"
+)
+```
+
+## `plot_distributions()`
+
+Density or histogram of normalized binding counts faceted by chromosome.
+```{r plot_distributions_density}
+plot_distributions(
+  object    = example_peaks,
+  title     = "Binding count distributions",
+  condition = "Degron",
+  baseline  = "NoTag",
+  type      = "density"
+)
+```
+```{r plot_distributions_hist}
+plot_distributions(
+  object    = example_peaks,
+  title     = "Binding count distributions",
+  condition = "Degron",
+  baseline  = "NoTag",
+  type      = "hist"
+)
+```
+
+## `ttest_scatter()`
+
+T-test comparing log2(fold-change) distribution of ChrA vs ChrA and ChrX vs ChrA.
+```{r ttest_scatter_plot}
+res <- ttest_scatter(
+  object   = example_peaks,
+  title    = "FC t-test per chromosome",
+  fc_col   = "Fold"
+)
+res$plot
+```
+
+The underlying data is also accessible:
+```{r ttest_scatter_data}
+res$results
+```

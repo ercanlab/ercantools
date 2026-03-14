@@ -1,0 +1,91 @@
+---
+title: "Violin plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Violin plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse  = TRUE,
+  comment   = "#>",
+  fig.width = 7,
+  fig.height = 5
+)
+```
+```{r load}
+library(ercantools)
+data(example_peaks)
+```
+
+## Overview
+
+The violin functions compare binding distributions between chromosomes.
+Four functions cover the main use cases:
+
+| Function | Y-axis | Groups |
+|---|---|---|
+| `violin_log2FC()` | log2FC | chrX vs pooled autosomes |
+| `violin_counts()` | Normalized counts | chrX vs autosomes, 2 conditions |
+| `violin_log2FC_all_chr()` | log2FC | Each chromosome separately |
+| `violin_counts_all_chr()` | Normalized counts | Each chromosome x 2 conditions |
+
+## `violin_log2FC()`
+
+Compares chrX peaks against all autosomes pooled. A Welch t-test
+p-value is annotated automatically.
+```{r violin_log2FC}
+violin_log2FC(
+  object          = example_peaks,
+  title           = "log2FC: chrX vs autosomes",
+  ylab            = "log2(Fold Change)",
+  chr_of_interest = "chrX",
+  ylim            = c(-3, 3),
+  pvalue_y_position = 2.5
+)
+```
+
+## `violin_counts()`
+
+Shows four groups: baseline-A, baseline-X, condition-A, condition-X.
+```{r violin_counts}
+violin_counts(
+  object           = example_peaks,
+  title            = "Normalized counts: chrX vs autosomes",
+  conc_condition   = "Conc_degron",
+  condition_name   = "degron",
+  conc_baseline    = "Conc_notag",
+  baseline_name    = "notag",
+  ylim             = c(0, 16),
+  label.y_plot     = c(13, 14, 15, 16)
+)
+```
+
+## `violin_log2FC_all_chr()`
+
+One violin per chromosome with significance brackets vs chrX.
+```{r violin_log2FC_all_chr, fig.width = 9}
+violin_log2FC_all_chr(
+  object          = example_peaks,
+  title           = "log2FC per chromosome",
+  ylab            = "log2(Fold Change)",
+  chr_of_interest = "chrX",
+  ylim            = c(-3, 3)
+)
+```
+
+## `violin_counts_all_chr()`
+
+Two paired violins per chromosome separated by condition.
+```{r violin_counts_all_chr, fig.width = 11}
+violin_counts_all_chr(
+  object           = example_peaks,
+  title            = "Normalized counts per chromosome",
+  conc_condition   = "Conc_degron",
+  condition_name   = "degron",
+  conc_baseline    = "Conc_notag",
+  baseline_name    = "notag",
+  ylim             = c(0, 16)
+)
+```
