@@ -1,4 +1,4 @@
-#' @importFrom dplyr group_by summarise n bind_rows filter mutate count
+#' @importFrom dplyr group_by summarise n bind_rows filter mutate count rename select all_of
 #' @importFrom tibble tibble
 #' @importFrom tidyr pivot_longer pivot_wider
 #' @importFrom rlang :=
@@ -10,6 +10,9 @@
 #'   geom_rug scale_shape_manual guide_legend geom_col
 #' @importFrom ggpubr stat_compare_means
 #' @importFrom ggrepel geom_label_repel
+#' @importFrom GenomicRanges GRanges findOverlaps
+#' @importFrom IRanges IRanges
+#' @importFrom S4Vectors queryHits
 #' @importFrom magrittr %>%
 NULL
 
@@ -25,6 +28,8 @@ utils::globalVariables(c(
   "Condition_raw", "seqnames", "Conc_plot",
   # MD / Volcano plot
   "colors", "shapes", "FDR","sig_color",
+  # peaks_overlap
+  "start", "end", "mid",
   # dplyr
   ".data"
 ))
