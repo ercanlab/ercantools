@@ -9,7 +9,8 @@
 #'
 #' @param object Data frame containing chromosomal and fold change data (diffbind report output)
 #' @param title Plot title (optional)
-#' @param ylab Y-axis label (optional)
+#' @param subtitle Plot subtitle (optional)
+#' @param ylab Character. Y-axis label. (default: "log2 Fold Change")
 #' @param xlab X-axis label (optional)
 #' @param log2FC_col Column name containing log2FoldChange values (default: "Fold")
 #' @param chr_col Column name containing chromosome identifiers (default: "seqnames")
@@ -32,15 +33,16 @@
 #' @examples
 #' \dontrun{
 #' # Basic usage with a data frame
-#' violin_box(my_data, title = "Expression comparison", ylab = "log2FoldChange")
+#' violin_box(my_peaks, title = "Expression comparison", ylab = "log2FoldChange")
 #'
 #' # Custom chromosome and colors
-#' violin_box(my_data, chr_of_interest = "chr1",
+#' violin_box(my_peaks, chr_of_interest = "chr1",
 #'           color_chr_of_interest = "red", color_other_chr = "blue")
 #' }
 violin_log2FC <- function(object = NULL,
                        title = NULL,
-                       ylab = NULL,
+                       subtitle = NULL,
+                       ylab = "log2 Fold Change",
                        xlab = NULL,
                        log2FC_col = "Fold",
                        chr_col = "seqnames",
@@ -90,6 +92,7 @@ violin_log2FC <- function(object = NULL,
     scale_fill_manual(values = c(color_other_chr, color_chr_of_interest)) +
     labs(
       title = title,
+      subtitle = subtitle,
       y = ylab,
       x = xlab
     ) +
