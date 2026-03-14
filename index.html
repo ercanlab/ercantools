@@ -55,9 +55,291 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ercantools">ercantools<a class="anchor" aria-label="anchor" href="#ercantools"></a>
+<div class="page-header"><h1 id="ercantools-">ercantools <img src="reference/figures/logo.jpg" align="right" height="139" alt=""><a class="anchor" aria-label="anchor" href="#ercantools-"></a>
 </h1></div>
-<p>General purpose ercanlab R tools</p>
+<!-- badges: start -->
+
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p><code>ercantools</code> is an R package providing a suite of visualization and statistical analysis functions for ChIP-seq differential binding data. It is designed to work directly with <a href="https://bioconductor.org/packages/DiffBind/" class="external-link">DiffBind</a> output and focuses on dosage compensation analysis in <em>C. elegans</em>, comparing binding patterns on the X chromosome versus autosomes.</p>
+<p>The package bundles functions for violin plots, MA/MD plots, distribution plots, chromosome-level t-test scatter plots, and genomic peak overlap utilities, all designed to produce publication-ready figures with minimal setup.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<div class="section level3">
+<h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+</h3>
+<p><code>ercantools</code> depends on two Bioconductor packages. Install them before installing the package:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GenomicRanges"</span>, <span class="st">"IRanges"</span>, <span class="st">"S4Vectors"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="install-from-github">Install from GitHub<a class="anchor" aria-label="anchor" href="#install-from-github"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ercanlab/ercantools"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="install-the-development-branch">Install the development branch<a class="anchor" aria-label="anchor" href="#install-the-development-branch"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ercanlab/ercantools"</span>, ref <span class="op">=</span> <span class="st">"develop"</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ercanlab/ercantools" class="external-link">ercantools</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Load the built-in example dataset (mimics DiffBind output)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">example_peaks</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">example_peaks</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compare log2FC between chrX and autosomes</span></span>
+<span><span class="fu"><a href="reference/violin_log2FC.html">violin_log2FC</a></span><span class="op">(</span></span>
+<span>  object          <span class="op">=</span> <span class="va">example_peaks</span>,</span>
+<span>  title           <span class="op">=</span> <span class="st">"log2FC: chrX vs autosomes"</span>,</span>
+<span>  chr_of_interest <span class="op">=</span> <span class="st">"chrX"</span>,</span>
+<span>  ylim            <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
+</h2>
+<ul>
+<li>
+<strong>Violin + box plots</strong>: compare log2 fold-change or normalized binding counts between chromosomes.</li>
+<li>
+<strong>MA / MD plots</strong>: visualize log2 fold-change against average concentration(normalized binding counts) with significance coloring.</li>
+<li>
+<strong>Distribution plots</strong>: density and histogram plots of normalized binding counts per condition, faceted by chromosome.</li>
+<li>
+<strong>T-test scatter plots</strong>: chromosome-level Welch t-tests displayed as connected scatter plots to identify which chromosomes change significantly between conditions.</li>
+<li>
+<strong>Peak overlap utilities</strong>: GenomicRanges-based overlap detection using midpoint windows, plus UpSet plots for multi-category intersection visualization.</li>
+<li>
+<strong>C. elegans defaults</strong>: built-in chromosome ordering (chrI–V, chrX) with fully configurable parameters for other organisms.</li>
+<li>
+<strong>Example dataset</strong>: 2,000 synthetic peaks mimicking real DiffBind output for <em>C. elegans</em> dosage compensation experiments.</li>
+</ul>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>Full documentation is available at the pkgdown website:</p>
+<p><strong><a href="https://ercanlab.github.io/ercantools/">https://ercanlab.github.io/ercantools/</a></strong></p>
+<div class="section level3">
+<h3 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th>Vignette</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://ercanlab.github.io/ercantools/articles/violin-plots.html">Violin plots</a></td>
+<td>Comparing binding distributions between chromosomes</td>
+</tr>
+<tr class="even">
+<td><a href="https://ercanlab.github.io/ercantools/articles/diagnostic-plots.html">Diagnostic plots</a></td>
+<td>MD plots, distributions, and t-test scatter plots</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="function-reference">Function reference<a class="anchor" aria-label="anchor" href="#function-reference"></a>
+</h3>
+<p>Access the documentation for any function directly in R:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">violin_log2FC</span></span>
+<span><span class="op">?</span><span class="va">plot_md</span></span>
+<span><span class="op">?</span><span class="va">find_overlap_peaks</span></span></code></pre></div>
+<p>Or browse the full reference at: <a href="https://ercanlab.github.io/ercantools/reference/">https://ercanlab.github.io/ercantools/reference/</a></p>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="usage-examples">Usage examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
+</h2>
+<div class="section level3">
+<h3 id="id_1-violin-plot--all-chromosomes-log2fc">1. Violin plot — all chromosomes (log2FC)<a class="anchor" aria-label="anchor" href="#id_1-violin-plot--all-chromosomes-log2fc"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/violin_log2FC_all_chr.html">violin_log2FC_all_chr</a></span><span class="op">(</span></span>
+<span>  object          <span class="op">=</span> <span class="va">example_peaks</span>,</span>
+<span>  title           <span class="op">=</span> <span class="st">"log2FC per chromosome"</span>,</span>
+<span>  chr_of_interest <span class="op">=</span> <span class="st">"chrX"</span>,</span>
+<span>  ylim            <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  output_pdf      <span class="op">=</span> <span class="st">"violin_all_chr.pdf"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="id_2-violin-plot--normalized-counts-two-conditions">2. Violin plot — normalized counts, two conditions<a class="anchor" aria-label="anchor" href="#id_2-violin-plot--normalized-counts-two-conditions"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/violin_counts.html">violin_counts</a></span><span class="op">(</span></span>
+<span>  object           <span class="op">=</span> <span class="va">example_peaks</span>,</span>
+<span>  title            <span class="op">=</span> <span class="st">"Normalized counts: chrX vs autosomes"</span>,</span>
+<span>  conc_condition   <span class="op">=</span> <span class="st">"Conc_degron"</span>,</span>
+<span>  condition_name   <span class="op">=</span> <span class="st">"degron"</span>,</span>
+<span>  conc_baseline    <span class="op">=</span> <span class="st">"Conc_notag"</span>,</span>
+<span>  baseline_name    <span class="op">=</span> <span class="st">"notag"</span>,</span>
+<span>  ylim             <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">16</span><span class="op">)</span>,</span>
+<span>  label.y_plot     <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">14</span>, <span class="fl">15</span>, <span class="fl">16</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="id_3-ma--md-plot">3. MA / MD plot<a class="anchor" aria-label="anchor" href="#id_3-ma--md-plot"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_md.html">plot_md</a></span><span class="op">(</span></span>
+<span>  object     <span class="op">=</span> <span class="va">example_peaks</span>,</span>
+<span>  x_var      <span class="op">=</span> <span class="st">"Conc"</span>,</span>
+<span>  y_var      <span class="op">=</span> <span class="st">"Fold"</span>,</span>
+<span>  fdr_var    <span class="op">=</span> <span class="st">"FDR"</span>,</span>
+<span>  cutoff_y   <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  cutoff_FDR <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>  title      <span class="op">=</span> <span class="st">"MD plot — degron vs notag"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="id_4-t-test-scatter--which-chromosomes-change">4. T-test scatter — which chromosomes change?<a class="anchor" aria-label="anchor" href="#id_4-t-test-scatter--which-chromosomes-change"></a>
+</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ttest_scatter.html">ttest_scatter</a></span><span class="op">(</span></span>
+<span>  object   <span class="op">=</span> <span class="va">example_peaks</span>,</span>
+<span>  title    <span class="op">=</span> <span class="st">"FC t-test per chromosome"</span>,</span>
+<span>  fc_col   <span class="op">=</span> <span class="st">"Fold"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">res</span><span class="op">$</span><span class="va">plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">results</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="id_5-peak-overlap-detection">5. Peak overlap detection<a class="anchor" aria-label="anchor" href="#id_5-peak-overlap-detection"></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">peaks_x</span> <span class="op">&lt;-</span> <span class="va">example_peaks</span><span class="op">[</span><span class="va">example_peaks</span><span class="op">$</span><span class="va">seqnames</span> <span class="op">==</span> <span class="st">"chrX"</span>, <span class="op">]</span></span>
+<span><span class="va">peaks_a</span> <span class="op">&lt;-</span> <span class="va">example_peaks</span><span class="op">[</span><span class="va">example_peaks</span><span class="op">$</span><span class="va">seqnames</span> <span class="op">!=</span> <span class="st">"chrX"</span>, <span class="op">]</span></span>
+<span></span>
+<span><span class="va">overlap</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/find_overlap_peaks.html">find_overlap_peaks</a></span><span class="op">(</span><span class="va">peaks_x</span>, <span class="va">peaks_a</span>, bp_distance <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Overlap:"</span>, <span class="va">overlap</span><span class="op">$</span><span class="va">df2_percentage</span>, <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<p>Contributions are welcome! Please follow these steps:</p>
+<div class="section level3">
+<h3 id="reporting-issues">Reporting issues<a class="anchor" aria-label="anchor" href="#reporting-issues"></a>
+</h3>
+<p>Open an issue at <a href="https://github.com/ercanlab/ercantools/issues" class="external-link">https://github.com/ercanlab/ercantools/issues</a> and include:</p>
+<ul>
+<li>A minimal reproducible example (use <code>example_peaks</code> if possible)</li>
+<li>Your R version (<code>R.version.string</code>)</li>
+<li>Your <code>ercantools</code> version (<code>packageVersion("ercantools")</code>)</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="pull-requests">Pull requests<a class="anchor" aria-label="anchor" href="#pull-requests"></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li>
+<p>Fork the repository and create a new branch from <code>main</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> feature/your-feature-name</span></code></pre></div>
+</li>
+<li><p>Make your changes and add tests if applicable.</p></li>
+<li>
+<p>Run the full check locally before submitting:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</li>
+<li><p>Open a pull request with a clear description of the changes.</p></li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="code-style">Code style<a class="anchor" aria-label="anchor" href="#code-style"></a>
+</h3>
+<ul>
+<li>Follow the <a href="https://style.tidyverse.org/" class="external-link">tidyverse style guide</a>
+</li>
+<li>Use <code>snake_case</code> for function and variable names</li>
+<li>Document all exported functions with <a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> tags</li>
+<li>Maximum 80 characters per line</li>
+<li>Use <code>ggplot2::</code> prefixes (not <code><a href="https://ggplot2.tidyverse.org" class="external-link">library(ggplot2)</a></code>) inside functions</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="running-tests">Running tests<a class="anchor" aria-label="anchor" href="#running-tests"></a>
+</h3>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<hr>
+</div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use <code>ercantools</code> in your research, please cite:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">garbozo2025ercantools</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">author</span>  = {Garbozo, Daniel and Ercan, Sevinc},</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">title</span>   = {{ercantools}: Visualization and Analysis Tools for</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>             {ChIP}-seq Differential Binding Data},</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">year</span>    = {2025},</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="dt">url</span>     = {https://github.com/ercanlab/ercantools},</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">note</span>    = {R package version 0.1.0}</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>}</span></code></pre></div>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>MIT © Daniel Garbozo — see <a href="LICENSE">LICENSE</a> for details.</p>
+<hr>
+</div>
+<div class="section level2">
+<h2 id="acknowledgments">Acknowledgments<a class="anchor" aria-label="anchor" href="#acknowledgments"></a>
+</h2>
+<ul>
+<li>
+<a href="https://sites.google.com/site/ercanlab/research" class="external-link">Ercan Lab</a> — New York University, for the biological context and experimental data that motivated this package. —</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="roadmap">Roadmap<a class="anchor" aria-label="anchor" href="#roadmap"></a>
+</h2>
+<p>Planned features for future versions:</p>
+<ul>
+<li>
+<code>plot_pca()</code> — PCA based on normalized binding counts</li>
+<li>
+<code>plot_heatmap()</code> — binding signal heatmap across conditions</li>
+<li>
+<code>plot_igv_track()</code> — IGV-style genome browser track plots</li>
+<li>
+<code>plot_cluster()</code> — peak clustering visualization</li>
+<li>Support for additional organisms beyond <em>C. elegans</em>
+</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -92,7 +374,15 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/ercanlab/ercantools/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/ercanlab/ercantools/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/ercanlab/ercantools/actions/workflows/pkgdown.yaml" class="external-link"><img src="https://github.com/ercanlab/ercantools/actions/workflows/pkgdown.yaml/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a></li>
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
