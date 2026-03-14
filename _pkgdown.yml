@@ -1,0 +1,62 @@
+url: https://ercanlab.github.io/ercantools/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search, github]
+  components:
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/ercanlab/ercantools
+      aria-label: GitHub
+
+home:
+  title: ercantools — ChIP-seq tools for C. elegans
+  description: >
+    Visualization and analysis tools for DiffBind ChIP-seq output,
+    with a focus on dosage compensation analysis in C. elegans.
+
+reference:
+  - title: "Violin plots"
+    desc: Compare log2FC or normalized counts between chromosomes.
+    contents:
+      - violin_log2FC
+      - violin_counts
+      - violin_log2FC_all_chr
+      - violin_counts_all_chr
+
+  - title: "T-test scatter plots"
+    desc: Chromosome-level significance plots.
+    contents:
+      - ttest_scatter
+
+  - title: "Diagnostic plots"
+    desc: MD plot and distribution plots for DiffBind output.
+    contents:
+      - plot_md
+      - plot_distributions
+
+  - title: "Peak utilities"
+    desc: Genomic overlap detection and visualization.
+    contents:
+      - find_overlap_peaks
+      - upset_peaks
+
+  - title: "Example data"
+    desc: Built-in dataset for examples.
+    contents:
+      - example_peaks
+
+articles:
+  - title: "Tutorials"
+    navbar: ~
+    contents:
+      - violin-plots
+      - diagnostic-plots
+
+news:
+  - one_page: true
