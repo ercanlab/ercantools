@@ -31,11 +31,6 @@
 #'
 #' @return A ggplot object containing the violin and box plots
 #'
-#' @importFrom dplyr bind_rows filter mutate count
-#' @importFrom ggplot2 ggplot aes geom_violin geom_boxplot stat_summary coord_cartesian scale_fill_manual labs scale_x_discrete theme_bw geom_text geom_hline theme element_text
-#' @importFrom ggpubr stat_compare_means
-#' @importFrom tibble tibble
-#'
 #' @examples
 #' # Example usage:
 #' # violin_box_conc(df, title = "Concentration Comparison", chr_of_interest = "chrX")

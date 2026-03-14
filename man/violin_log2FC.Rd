@@ -57,7 +57,7 @@ It also performs a t-test to assess statistical significance.
 violin_box(my_data, title = "Expression comparison", ylab = "log2FoldChange")
 
 # Custom chromosome and colors
-violin_box(my_data, chr_of_interest = "chr1", 
+violin_box(my_data, chr_of_interest = "chr1",
           color_chr_of_interest = "red", color_other_chr = "blue")
 }
 }

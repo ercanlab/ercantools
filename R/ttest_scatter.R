@@ -29,7 +29,7 @@
 #' \dontrun{
 #' res <- ttest_scatter(
 #'   object = my_peaks,
-#'   title  = "FC t-test (Autosome vs Autosomes" and "X vs Autosomes)"
+#'   title  = "FC t-test (Autosome vs Autosomes and X vs Autosomes)"
 #' )
 #' res$plot
 #' }

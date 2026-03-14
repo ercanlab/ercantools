@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 ```
 ```{r load}
 library(ercantools)
+library(magrittr)
 data(example_peaks)
 ```
 
