@@ -1,10 +1,38 @@
 Package: ercantools
-Title: Tools for Data Analysis in the Ercan Lab
+Title: Visualization and Analysis Tools for ChIP-seq Differential Binding Data
 Version: 0.1.0
-Authors@R: 
-    person("Daniel", "Garbozo", email = "your.email@example.com", role = c("aut", "cre"))
-Description: A collection of utility functions for processing and analyzing experimental data in the Ercan Lab.
-License: MIT 
+Authors@R: c(
+    person("Daniel", "Garbozo", email = "dg4739@nyu.edu",
+           role = c("aut", "cre")),
+    person("Sevinc", "Ercan", email = "sercan@nyu.edu",
+           role = "ctb")
+  )
+Description: A collection of plotting and analysis functions for ChIP-seq
+    differential binding data, primarily designed for DiffBind output.
+    Provides violin plots for log2 fold change and normalized binding counts,
+    t-test scatter plots, MA/MD plots, distribution plots,
+    and peak overlap utilities. Designed for C. elegans genomics with a
+    focus on dosage compensation analysis (chrX versus autosomes), but
+    fully configurable for any organism.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
+Depends:
+    R (>= 4.1.0)
+Imports:
+    ggplot2 (>= 3.4.0),
+    dplyr (>= 1.1.0),
+    tibble (>= 3.2.0),
+    ggpubr (>= 0.6.0),
+    magrittr,
+    stats
+Suggests:
+    UpSetR,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    pkgdown,
+    BiocManager
+URL: https://github.com/ercanlab/ercantools
+BugReports: https://github.com/ercanlab/ercantools/issues
